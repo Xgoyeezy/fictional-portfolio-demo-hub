@@ -6,9 +6,9 @@ All names, emails, business details, project titles, testimonials, and form data
 
 Live demo links:
 
-- `$250 + motion` Maya Chen creative portfolio
 - `$250` one-page personal website
+- `$350` animated Maya Chen creative portfolio
 - `$500` 3 to 5 page personal site
-- `$500` editorial 3 to 5 page personal site
+- `$600` animated editorial 3 to 5 page personal site
 - `$800` small business website
 - `+$500` backend/database add-on
