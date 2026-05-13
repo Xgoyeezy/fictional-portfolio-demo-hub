@@ -116,6 +116,23 @@ nav a,
   font-weight: 850;
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand img {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(23, 18, 15, 0.16);
+}
+
+.brand span {
+  white-space: nowrap;
+}
+
 nav {
   display: flex;
   gap: 18px;

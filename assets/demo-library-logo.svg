@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Demo Library logo</title>
+  <desc id="desc">Layered website panels forming a compact demo library mark.</desc>
+  <rect width="160" height="160" rx="34" fill="#17120f"/>
+  <path d="M31 38c0-7.18 5.82-13 13-13h50c7.18 0 13 5.82 13 13v52c0 7.18-5.82 13-13 13H44c-7.18 0-13-5.82-13-13V38Z" fill="#ef8d62"/>
+  <path d="M55 57c0-7.18 5.82-13 13-13h50c7.18 0 13 5.82 13 13v52c0 7.18-5.82 13-13 13H68c-7.18 0-13-5.82-13-13V57Z" fill="#116a67"/>
+  <path d="M43 78c0-7.18 5.82-13 13-13h50c7.18 0 13 5.82 13 13v52c0 7.18-5.82 13-13 13H56c-7.18 0-13-5.82-13-13V78Z" fill="#c8ef6a"/>
+  <path d="M57 85h48v9H57v-9Zm0 19h35v9H57v-9Zm0 19h24v9H57v-9Z" fill="#17120f"/>
+  <path d="M122 26l5.82 13.18L141 45l-13.18 5.82L122 64l-5.82-13.18L103 45l13.18-5.82L122 26Z" fill="#f8f1e7"/>
+</svg>

@@ -8,7 +8,8 @@
       name="description"
       content="Personal website demo library with clear package pricing, included add-ons, optional add-ons, and downloadable pricing guide."
     />
-    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="icon" href="assets/demo-library-logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css?v=9" />
   </head>
   <body>
     <div class="page-loader" role="status" aria-label="Welcome, loading demo library">
@@ -19,7 +20,10 @@
     </div>
 
     <header id="top" class="topbar">
-      <a href="#top" class="brand">Demo Library</a>
+      <a href="#top" class="brand" aria-label="Demo Library home">
+        <img src="assets/demo-library-logo.svg" alt="" width="42" height="42" />
+        <span>Demo Library</span>
+      </a>
       <nav aria-label="Sample categories">
         <a href="#packages">Packages</a>
         <a href="#pricing">Pricing</a>
