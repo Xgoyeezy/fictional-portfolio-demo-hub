@@ -98,7 +98,7 @@ h1 {
 
 .package-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   padding-bottom: 70px;
 }
@@ -129,6 +129,14 @@ h1 {
   animation-delay: 270ms;
 }
 
+.package:nth-child(5) {
+  animation-delay: 360ms;
+}
+
+.package:nth-child(6) {
+  animation-delay: 450ms;
+}
+
 .package span {
   width: fit-content;
   padding: 8px 11px;
@@ -141,8 +149,17 @@ h1 {
   background: var(--peach);
 }
 
+.maya span {
+  background: #6e304b;
+}
+
 .two span {
   background: var(--teal);
+}
+
+.editorial span {
+  color: var(--ink);
+  background: #e9ad35;
 }
 
 .three span {
@@ -189,7 +206,7 @@ h1 {
 
 .price-list {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 16px;
 }
 
