@@ -1,21 +1,57 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const pageLoader = document.querySelector(".page-loader");
+const pageLoaderStorageKey = "portfolioDemoHubWelcomeSeen";
+const pageLoaderReturnParam = new URLSearchParams(window.location.search).get("from") === "sample";
+
+function getPageLoaderSeen() {
+  try {
+    return window.sessionStorage.getItem(pageLoaderStorageKey) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function setPageLoaderSeen() {
+  try {
+    window.sessionStorage.setItem(pageLoaderStorageKey, "true");
+  } catch {
+    // Browsers can disable session storage; the loader still works without it.
+  }
+}
+
+function cleanReturnParam() {
+  if (!pageLoaderReturnParam) return;
+
+  const url = new URL(window.location.href);
+  url.searchParams.delete("from");
+  history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+}
 
 if (pageLoader) {
-  const hidePageLoader = () => {
-    pageLoader.classList.add("is-hidden");
-    window.setTimeout(() => pageLoader.remove(), reduceMotion ? 0 : 360);
-  };
-
-  const schedulePageLoader = () => {
-    window.setTimeout(hidePageLoader, reduceMotion ? 0 : 1250);
-  };
-
-  if (document.readyState === "complete") {
-    schedulePageLoader();
+  if (getPageLoaderSeen() || pageLoaderReturnParam) {
+    setPageLoaderSeen();
+    document.body.classList.add("loader-seen");
+    pageLoader.remove();
+    cleanReturnParam();
   } else {
-    window.addEventListener("load", schedulePageLoader, { once: true });
+    const hidePageLoader = () => {
+      setPageLoaderSeen();
+      pageLoader.classList.add("is-hidden");
+      window.setTimeout(() => pageLoader.remove(), reduceMotion ? 0 : 360);
+    };
+
+    const schedulePageLoader = () => {
+      window.setTimeout(hidePageLoader, reduceMotion ? 0 : 1250);
+    };
+
+    if (document.readyState === "loading") {
+      window.addEventListener("DOMContentLoaded", schedulePageLoader, { once: true });
+    } else {
+      window.requestAnimationFrame(schedulePageLoader);
+    }
   }
+} else {
+  cleanReturnParam();
 }
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
