@@ -6,6 +6,7 @@
   --teal: #116a67;
   --lime: #c8ef6a;
   --rose: #b64971;
+  --scroll-progress: 0;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -36,6 +37,17 @@ body.loader-seen > main {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 auto auto 0;
+  z-index: 80;
+  width: calc(var(--scroll-progress) * 100%);
+  height: 4px;
+  background: linear-gradient(90deg, var(--peach), var(--lime), var(--teal), var(--rose));
+  box-shadow: 0 8px 24px rgba(17, 106, 103, 0.24);
+  transform-origin: left;
 }
 
 .page-loader {
@@ -108,6 +120,7 @@ a {
   border-bottom: 1px solid var(--line);
   background: rgba(248, 241, 231, 0.82);
   backdrop-filter: blur(16px);
+  transform: translateY(calc(var(--scroll-progress) * -3px));
 }
 
 .brand,
@@ -127,6 +140,8 @@ nav a,
   height: 42px;
   border-radius: 8px;
   box-shadow: 0 10px 28px rgba(23, 18, 15, 0.16);
+  transform: rotate(calc(var(--scroll-progress) * -8deg));
+  transition: transform 220ms ease;
 }
 
 .brand span {
@@ -153,6 +168,10 @@ nav {
   gap: 34px;
   align-items: end;
   padding: 86px 0 58px;
+}
+
+.hero h1 {
+  transform: translateY(calc(var(--scroll-progress) * -14px));
 }
 
 .hero > *,
@@ -242,6 +261,7 @@ h1 {
 }
 
 .package {
+  position: relative;
   display: flex;
   min-height: 360px;
   flex-direction: column;
@@ -253,6 +273,35 @@ h1 {
   background: rgba(255, 252, 246, 0.78);
   box-shadow: 0 20px 60px rgba(23, 18, 15, 0.08);
   animation: lift 700ms ease both;
+  overflow: hidden;
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.package::after {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: 48px;
+  height: 5px;
+  border-radius: 999px;
+  content: "";
+  opacity: 0;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition:
+    opacity 520ms ease,
+    transform 520ms cubic-bezier(0.2, 0.72, 0.18, 1);
+}
+
+.package:hover,
+.package:focus-within {
+  border-color: rgba(23, 18, 15, 0.3);
+  box-shadow: 0 28px 80px rgba(23, 18, 15, 0.13);
+  transform: translateY(-5px);
 }
 
 .package:nth-child(2) {
@@ -352,6 +401,49 @@ h1 {
   margin: 0;
   color: rgba(255, 248, 238, 0.78);
   line-height: 1.5;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px) rotate(var(--reveal-rotate, 0deg));
+  transition:
+    opacity 720ms cubic-bezier(0.2, 0.72, 0.18, 1),
+    transform 720ms cubic-bezier(0.2, 0.72, 0.18, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.scroll-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+.package.scroll-reveal {
+  animation: none;
+}
+
+.package.scroll-reveal.in-view::after {
+  opacity: 0.42;
+  transform: scaleX(1);
+}
+
+.package.scroll-reveal.in-view:hover,
+.package.scroll-reveal.in-view:focus-within {
+  transform: translateY(-5px) rotate(0deg);
+}
+
+.guide-download.scroll-reveal {
+  transform: translateY(28px) scale(0.98);
+}
+
+.guide-download.scroll-reveal.in-view {
+  transform: translateY(0) scale(1);
+}
+
+.price-list p.scroll-reveal {
+  padding: 14px;
+  border: 1px solid rgba(255, 248, 238, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 248, 238, 0.06);
 }
 
 @keyframes lift {
@@ -486,6 +578,23 @@ h1 {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
+  }
+
+  .scroll-progress {
+    display: none;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal.in-view,
+  .guide-download.scroll-reveal,
+  .guide-download.scroll-reveal.in-view {
+    opacity: 1;
+    transform: none;
+  }
+
+  .package::after {
+    opacity: 0.32;
+    transform: scaleX(1);
   }
 
   body > .topbar,

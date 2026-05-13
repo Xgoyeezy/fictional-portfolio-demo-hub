@@ -2,6 +2,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 const pageLoader = document.querySelector(".page-loader");
 const pageLoaderStorageKey = "portfolioDemoHubWelcomeSeen";
 const pageLoaderReturnParam = new URLSearchParams(window.location.search).get("from") === "sample";
+const root = document.documentElement;
 
 function getPageLoaderSeen() {
   try {
@@ -53,6 +54,67 @@ if (pageLoader) {
 } else {
   cleanReturnParam();
 }
+
+function updateScrollProgress() {
+  const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
+  root.style.setProperty("--scroll-progress", progress.toFixed(4));
+}
+
+function setupScrollReveals() {
+  const targets = document.querySelectorAll(".hero > *, .guide-download, .package, .pricing h2, .price-list p");
+
+  targets.forEach((element, index) => {
+    element.classList.add("scroll-reveal");
+    element.style.setProperty("--reveal-delay", `${Math.min(index * 42, 210)}ms`);
+
+    if (element.classList.contains("package")) {
+      element.style.setProperty("--reveal-rotate", index % 2 === 0 ? "-1.4deg" : "1.4deg");
+    }
+  });
+
+  if (reduceMotion) {
+    targets.forEach((element) => element.classList.add("in-view"));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
+  );
+
+  targets.forEach((element) => revealObserver.observe(element));
+}
+
+if (!reduceMotion) {
+  let ticking = false;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateScrollProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
+
+  window.addEventListener("resize", updateScrollProgress);
+}
+
+setupScrollReveals();
+updateScrollProgress();
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
