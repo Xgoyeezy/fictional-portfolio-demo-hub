@@ -1,6 +1,6 @@
 # Fictional Portfolio Demo Hub
 
-This is the public hub page for six fictional website demos.
+This is the public hub page for six fictional website demos, with descriptions that separate base packages from included or optional add-ons.
 
 All names, emails, business details, project titles, testimonials, and form data are made up for demonstration.
 
