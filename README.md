@@ -12,3 +12,7 @@ Live demo links:
 - `$600` animated editorial 3 to 5 page personal site
 - `$800` small business website
 - `+$500` backend/database add-on
+
+Downloadable asset:
+
+- `downloads/Personal_Website_Pricing_Guide.docx`

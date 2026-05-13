@@ -54,6 +54,7 @@ nav {
 
 .hero,
 .package-grid,
+.guide-download,
 .pricing {
   width: min(1120px, calc(100% - 44px));
   margin-inline: auto;
@@ -94,6 +95,51 @@ h1 {
   margin-bottom: 10px;
   color: #625750;
   line-height: 1.7;
+}
+
+.guide-download {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 28px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #17120f;
+  color: #fff8ee;
+  box-shadow: 0 20px 60px rgba(23, 18, 15, 0.08);
+}
+
+.guide-download .eyebrow {
+  color: var(--lime);
+}
+
+.guide-download h2 {
+  margin-bottom: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  line-height: 1;
+}
+
+.guide-download p:not(.eyebrow) {
+  max-width: 620px;
+  margin-bottom: 0;
+  color: rgba(255, 248, 238, 0.74);
+  line-height: 1.6;
+}
+
+.guide-download a {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--lime);
+  font-weight: 900;
+  white-space: nowrap;
 }
 
 .package-grid {
@@ -231,6 +277,7 @@ h1 {
 @media (max-width: 900px) {
   .hero,
   .package-grid,
+  .guide-download,
   .price-list {
     grid-template-columns: 1fr;
   }
@@ -254,6 +301,7 @@ h1 {
 
   .hero,
   .package-grid,
+  .guide-download,
   .pricing {
     width: calc(100vw - 44px);
     max-width: calc(100vw - 44px);
@@ -272,5 +320,9 @@ h1 {
 
   .package {
     min-height: 300px;
+  }
+
+  .guide-download a {
+    width: 100%;
   }
 }
